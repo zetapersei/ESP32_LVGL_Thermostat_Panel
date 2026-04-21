@@ -5,11 +5,11 @@
 #include <PubSubClient.h>
 
 // --- CONFIGURAZIONE WIFI E MQTT ---
-const char* ssid = "Duca_Home";
-const char* password = "4655407195808313";
-const char* mqtt_server = "192.168.178.27";
-const char* mqtt_user = "maurizio";
-const char* mqtt_pass = "Ct66ubw82m";
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
+const char* mqtt_server = "BROKER_IP_ADDRESS";
+const char* mqtt_user = "BROKER_USERNAME";
+const char* mqtt_pass = "BROKER_PASSWORD";
 
 WiFiClient espClient;
 PubSubClient client(espClient);

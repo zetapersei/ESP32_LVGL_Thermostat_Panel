@@ -1,6 +1,6 @@
-# ESP32 LVGL Smart Thermostat Panel
+# ESP32 LVGL Thermostat Panel
 
-A high-performance, interactive Smart Thermostat interface built with **ESP32**, **LVGL (v8.3)**, and **TFT_eSPI**. This project features a bidirectional integration with **Home Assistant** via MQTT Discovery, allowing real-time synchronization between the physical touch panel and your smart home dashboard.
+A simple interactive Thermostat interface built with **ESP32**, **LVGL (v8.3)**, and **TFT_eSPI**. This project features a bidirectional integration with **Home Assistant** via MQTT Discovery, allowing real-time synchronization between the physical touch panel and your smart home dashboard.
 
 ---
 
@@ -21,6 +21,15 @@ A high-performance, interactive Smart Thermostat interface built with **ESP32**,
 * **ESP32** DevKit (WROOM-32).
 * **320x240 TFT Display** (ILI9341 or similar) with Touch Controller (XPT2046).
 * **MQTT Broker** (Mosquitto via Home Assistant Add-on or standalone).
+
+## 🛠 Hardware Note
+
+* The pin **T_CLK** connected to **SCK (GPIO 18)**.
+
+* The pin **T_DIN** connected to **MOSI (GPIO 23)**.
+
+* The pin T_DO connected to **MISO (GPIO 19)**.
+
 
 ---
 
@@ -61,3 +70,6 @@ build_flags =
     -D LV_CONF_SKIP
     -D LV_CONF_INCLUDE_SIMPLE
     -D LV_LVGL_H_INCLUDE_SIMPLE
+
+
+

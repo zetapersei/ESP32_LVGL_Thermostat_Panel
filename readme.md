@@ -24,13 +24,21 @@ A simple interactive Thermostat interface built with **ESP32**, **LVGL (v8.3)**,
 
 ## 🛠 Hardware Note
 
-* The pin **T_CLK** connected to **SCK (GPIO 18)**.
-
-* The pin **T_DIN** connected to **MOSI (GPIO 23)**.
-
-* The pin T_DO connected to **MISO (GPIO 19)**.
-
-
+* VCC  --> 3.3V --> Power
+* GND  --> GND  --> Terra
+* CS (Display) --> GPIO 15  --> Chip Select Display
+* RESET --> GPIO 4 (o EN) -->   Reset Hardware
+* DC/RS --> GPIO 2 -->  Data/Command
+* MOSI -->  GPIO 23 --> Master Out Slave In
+* SCK  -->  GPIO 18 --> Serial Clock
+* LED  -->  3.3V o GPIO 21 --> Retroilluminazione
+* MISO -->  GPIO 19 --> Master In Slave Out
+* T_CS (Touch) --> GPIO 5 --> Chip Select Touch
+* T_IRQ --> N.C --> (Opzion) Interrupt touch
+* T_CLK --> SCK (GPIO 18)
+* T_DIN --> MOSI (GPIO 23)
+* T_DO  --> MISO (GPIO 19)
+  
 ---
 
 ## 📋 Software Dependencies

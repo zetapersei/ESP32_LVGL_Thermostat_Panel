@@ -25,7 +25,7 @@ A simple interactive Thermostat interface built with **ESP32**, **LVGL (v8.3)**,
 ## 🛠 Hardware Note
 
 * VCC  --> 3.3V --> Power
-* GND  --> GND  --> Terra
+* GND  --> GND  --> 0 V
 * CS (Display) --> GPIO 15  --> Chip Select Display
 * RESET --> GPIO 4 (o EN) -->   Reset Hardware
 * DC/RS --> GPIO 2 -->  Data/Command

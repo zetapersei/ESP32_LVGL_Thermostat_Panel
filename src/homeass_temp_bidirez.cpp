@@ -4,7 +4,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-// --- CONFIGURAZIONE WIFI E MQTT ---
+// ---  WIFI and MQTT configuration ---
 const char* ssid = "YOUR_SSID";
 const char* password = "YOUR_PASSWORD";
 const char* mqtt_server = "BROKER_IP_ADDRESS";
@@ -14,12 +14,12 @@ const char* mqtt_pass = "BROKER_PASSWORD";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-// Topic per Home Assistant Discovery (Utilizziamo "number" per il controllo bidirezionale)
+// Topic for Home Assistant Discovery ( "number" for bidirectional control )
 const char* disc_topic = "homeassistant/number/termostato_lvgl/config";
 const char* state_topic = "homeassistant/number/termostato_lvgl/state";
 const char* cmd_topic   = "homeassistant/number/termostato_lvgl/set";
 
-// --- CONFIGURAZIONE DISPLAY ---
+// --- DISPLAY configuration ---
 static const uint16_t screenWidth  = 320;
 static const uint16_t screenHeight = 240;
 TFT_eSPI tft = TFT_eSPI(screenWidth, screenHeight); 
@@ -29,9 +29,9 @@ static lv_color_t buf[screenWidth * 10];
 lv_obj_t * screen_home, * meter, * temp_label, * slider_obj;
 lv_meter_indicator_t * needle;
 
-// --- FUNZIONI MQTT ---
+// --- MQTT functions ---
 
-// Callback che scatta quando ricevi un messaggio da Home Assistant
+// Callback that triggers when you receive a message from Home Assistant
 void mqtt_callback(char* topic, byte* payload, unsigned int length) {
     String msg;
     for (int i = 0; i < length; i++) msg += (char)payload[i];
@@ -44,14 +44,14 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
     if (temp_label) lv_label_set_text_fmt(temp_label, "%d°C", int_val);
     if (slider_obj) lv_slider_set_value(slider_obj, int_val, LV_ANIM_ON);
     
-    // Conferma lo stato a HA per sincronizzare l'interfaccia web
+    
     client.publish(state_topic, msg.c_str(), true);
 }
 
 void send_mqtt_discovery() {
     client.setBufferSize(1024);
     
-    // Cambiato in "number" per permettere a HA di inviare comandi
+    
     String payload = "{";
     payload += "\"name\": \"Impostazione Termostato\",";
     payload += "\"stat_t\": \"" + String(state_topic) + "\",";
@@ -95,7 +95,7 @@ void temp_slider_event_cb(lv_event_t * e) {
     }
 }
 
-// --- COSTRUZIONE UI ---
+// --- BUILD UI ---
 
 void build_home_ui() {
     lv_obj_set_style_bg_color(screen_home, lv_color_hex(0x000000), 0);
@@ -127,7 +127,7 @@ void build_home_ui() {
     lv_obj_add_event_cb(slider_obj, temp_slider_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
-// --- SETUP E LOOP ---
+// --- SETUP and LOOP ---
 
 void setup() {
     Serial.begin(115200);
